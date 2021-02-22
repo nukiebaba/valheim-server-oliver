@@ -1,4 +1,0 @@
-DisplayName=OliverLand
-ServerPort=6969
-WorldName=Golaptocar
-ServerPassword=lUZBGtILsA5Fffkf2CUS
