@@ -1,5 +1,8 @@
+#!/bin/bash
+
 sudo yum update
 sudo yum upgrade
+
 yum install glibc.i686 libstdc++.i686
 yum install nano
 yum install nc
@@ -13,13 +16,14 @@ usermod -a -G valheimserver steam
 
 mkdir /opt/steam
 mkdir /opt/steam/steamcmd
-chown -R steam:steam /opt/steam
 cd /opt/steam/steamcmd
 curl -sqL "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz" | tar zxvf -
-
+chown -R steam:steam /opt/steam
 
 mkdir /opt/valheim
+mkdir /var/log/valheim
 chown valheim:valheim /opt/valheim
+chown valheim:valheim /var/log/valheim
 
 yum install lvm2*
 pvcreate /dev/xvdb
@@ -40,7 +44,7 @@ chmod 0770 /opt/valheim/valheimserver
 su valheim
 sh /opt/steam/steamcmd/steamcmd.sh +login anonymous +force_install_dir /opt/valheim/valheimserver +app_update 896660 validate +exit
 
-
+#+login anonymous +app_info_print 896660
 
 mkdir /opt/valheim/init
 cp /opt/valheim/valheimserver/start_server.sh /opt/valheim/init/start_server.sh
